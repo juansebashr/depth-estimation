@@ -113,6 +113,10 @@ There are 3 arguments to run the code:
 All the training code and history for all 3 models are available in the notebooks directory. Each notebook has the 
 explanation of every part of the training process
 
+<div align="center">
+<img src="docs/images/example.png" alt="Logo" width="500" height="200">
+</div>
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- OUTPUTS EXAMPLES -->

@@ -244,3 +244,4 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/python,macos,windows,linux,virtualenv
 /docs/dataset_video.mp4
 /docs/Project Instructions.pdf
+/src/output_images
