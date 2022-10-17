@@ -1,0 +1,4 @@
+outs:
+- md5: 7be5934a29e96ba0a003b3aa5833a2cf
+  size: 306399661
+  path: depthnet.pth

@@ -1,0 +1,4 @@
+outs:
+- md5: ac339bbbcb9ee7cba8062eebd1eeca07
+  size: 306546921
+  path: depthnet.onnx

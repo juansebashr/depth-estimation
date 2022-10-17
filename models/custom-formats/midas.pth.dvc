@@ -1,0 +1,4 @@
+outs:
+- md5: 7826643ecef84cb385ced3b7462edbd5
+  size: 85743485
+  path: midas.pth

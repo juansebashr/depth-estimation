@@ -1,0 +1,4 @@
+outs:
+- md5: 1dbea1335d942708a9c0eb6367acce87
+  size: 7881626
+  path: simple_unet.onnx

@@ -1,0 +1,5 @@
+outs:
+- md5: cf49feb09b90bc0a86e7d93b2992ade1.dir
+  size: 25332585
+  nfiles: 4
+  path: simple_unet.tf

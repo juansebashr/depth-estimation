@@ -1,0 +1,4 @@
+outs:
+- md5: b87a00785d1741af179be8a5cbf2f11b
+  size: 66301223
+  path: midas.onnx

@@ -8,18 +8,17 @@
   </a>
 <h3 align="center">Monocular Depth Estimation - Entry Project</h3>
 
-  <p align="center">
-    A little description of your project
+<p align="center">
+    Training of different monocular depth prediction models in a dataset of cameras and sensors belonging to a 
+    Kiwibot robot.
     <br />
-    <a href="https://a_url_that_has_documentation"><strong>Explore the docs »</strong></a>
     <br />
-    <br />
-    <a href="https://github.com/chiper-inc/your_repo_name/pulls">Make a Pull Request</a>
+    <a href="https://github.com/juansebashr/kiwibot-depth-estimation/pulls">Make a Pull Request</a>
     ·
-    <a href="https://github.com/chiper-inc/your_repo_name/issues">Report Bug</a>
+    <a href="https://github.com/juansebashr/kiwibot-depth-estimation/issues">Report Bug</a>
     ·
-    <a href="https://github.com/chiper-inc/your_repo_name/issues">Request Feature</a>
-  </p>
+    <a href="https://github.com/juansebashr/kiwibot-depth-estimation/issues">Request Feature</a>
+</p>
 
 </div>
 
@@ -42,7 +41,7 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#outputs">Outputs</a></li>
+    <li><a href="#Get the models">Outputs</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -53,16 +52,29 @@
 
 ## About The Project
 
-A more detailed description of the project, what it does, what it was built for, to which STT or cell it belongs (
-last-mile, supply, pricing, etc), what it uses as input and what as output
+This project is the final step of the Kiwibot entry process, where the tasks were:
+
+1. Build a model for depth estimation using all 4 cameras. The model should process the 4
+  cameras at the time and output the corresponding 4 depth maps
+2. [Extra]: Build a model like in (1), but now include time in the model (take into account a
+   sequence of consecutive images at a time)
+
+To accomplish that, 3 models were trained, the first was a U-Net trained in Tensorflow (Keras) to provide a
+first grasp of the task getting good results. Then the MiDaS model from [this](https://arxiv.org/abs/1907.01341) 
+paper was fine-tuned on the datasets, greatly improving the results.
+
+Finally, a Conv-LSTM based U-Net from [this](paper) was implemented, but due to the size of the network the training
+was very slow on a 12Gb GTX-3060. 
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
 
-* [Python](https://www.python.org/)
-* [Pandas](https://pandas.pydata.org/)
-* Another library or technology that you think is useful to put
+* [Tensorflow](https://www.tensorflow.org/)
+* [Pytorch](https://pytorch.org/)
+* [ONNX](https://onnx.ai/)
+* Some common libraries of data science in python
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -82,59 +94,50 @@ packages in the requirements.txt file
   pip install -r requirements.txt
   ```
 
-### Environment variables
-
-To run this project, you will need to set environment variables, this can be done using a `.env` file and
-a plugin for your IDE, or if you're using conda or venv, you can set the environment variables right into the
-terminal.  
-These are the environment variables needed to run the code:
-```
-CREDENTIALS_PATH=path/to/credentials.json 
-ENVIRONMENT 
-LOGGING_ENV
-add the variables you need, remember that must be in upper case and not use special characters
-```
-
-
-The `CREDENTIALS_PATH` variable is the path to the credentials file for the Google Cloud Platform, if you don't have it
-ask for it to your leader or the owner of this repo, is important to set this variable as the global path in your
-machine. The `LOGGING_ENV` variable is used to determine the type of logging your code is using, if you are running on any
-cloud environment use `gcp` otherwise use `develop`.
-
-The environment variables for develop and staging are [here](https://github.com/chiper-inc/deployments-beta-stag/tree/main/cronjobs) 
-and the environment variables for production are [here](https://github.com/chiper-inc/deployments-prod/tree/main/cronjobs/data-science), 
-search for the repo/cronjob name and look the `variables.properties` file.
-
 ### Running the code
 
 Finally, you can run the code using the following command:
 
    ```sh
-   python src/main/predict_depth.py
+   python src/predict_depth.py --model midas --frames 4 --gpu true
    ```
 
+There are 3 arguments to run the code: 
+
+* `model`: Select the model to use, either midas or unet
+* `frames`: The number of frames that will be predicted from the 4 cameras of the original data
+* `gpu`: Either true or false, selects to run ONNX runtime in either a GPU or CPU
+
+### Checking the training code
+
+All the training code and history for all 3 models are available in the notebooks directory. Each notebook has the 
+explanation of every part of the training process
+
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- OUTPUTS EXAMPLES -->
 
-## Outputs
+## Get the models
 
-The outputs of the cron are the following:
+To get the data, you have to install dvc (follow [this](https://dvc.org/doc/install) link) and configure the remote
+bucket where the data is stored.
 
-* Here you specify with full details the expected output of the cron, if is a BigQuery table, a database or something
-  like it put the direction of the table in each environment. Please be as specific and detailed as possible.
+```
+dvc remote add --default myremote gdrive://1WGZtOysGV925-CFLEazZNTBzGQwwBBzo
+```
+and then downloading using the following command:
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+`dvc pull`
 
 <!-- CONTACT -->
 
 ## Contact
 
-Your name and your mail
+Sebastián Hernández Reyes - juansebashr@gmail.com
 
-Project Link: [https://github.com/chiper-inc/your_repo_name](https://github.com/chiper-inc/your_repo_name)
+Github profile: https://github.com/juansebashr
+
+LinkedIn profile: https://www.linkedin.com/in/sebastian-hernandez-reyes-76a0a8148/
 
 <!-- Template developed by the ML Team :D-->
 

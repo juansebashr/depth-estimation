@@ -1,0 +1,4 @@
+outs:
+- md5: 39beff6ce86ce03f6b94a29c6d11ee12
+  size: 492757791
+  path: dpt_hybrid.pt
