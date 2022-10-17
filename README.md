@@ -114,7 +114,7 @@ All the training code and history for all 3 models are available in the notebook
 explanation of every part of the training process
 
 <div align="center">
-<img src="docs/images/example.png" alt="Logo" width="500" height="200">
+<img src="docs/images/example.png" alt="Logo" width="600" height="300">
 </div>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
