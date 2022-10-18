@@ -96,7 +96,7 @@ packages in the requirements.txt file
 
 ### Running the code
 
-Finally, you can run the code using the following command:
+Finally, the main file of the project generates predictions over a set of images using the trained models and the metadata file (a csv file that needs to have the name of the image and the timestamp when the image was taken), you can run the code using the following command:
 
    ```sh
    python src/predict_depth.py --model midas --frames 4 --gpu true
